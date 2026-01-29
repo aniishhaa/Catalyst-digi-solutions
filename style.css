@@ -12,21 +12,29 @@ body {
   overflow-x: hidden;
 }
 
-/* ---------- HEADER ---------- */
+/* ---------- HEADER (ALL PAGES) ---------- */
 header {
   position: sticky;
   top: 0;
-  left: 0;
   width: 100%;
   padding: 22px 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(15, 15, 16, 0.95);  /* solid ink */
-  z-index: 10;
+
+  /* NEW: subtle brand gradient */
+  background: linear-gradient(
+    90deg,
+    #1e3a5f,   /* logo blue */
+    #2b1c4f    /* deep purple from logo tones */
+  );
+
+  z-index: 100;
   box-shadow: 0 4px 20px rgba(0,0,0,0.25);
 }
 
+
+/* ORIGINAL LOGO TEXT (KEPT) */
 .logo {
   font-weight: 600;
   letter-spacing: 3px;
@@ -34,39 +42,65 @@ header {
   color: #f7f7f5;
 }
 
+/* NAV */
 nav a {
   margin-left: 34px;
   text-decoration: none;
   font-size: 14px;
-  color: rgba(247, 247, 245, 0.85);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+
+  color: rgba(255,255,255,0.9);
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* underline effect using logo pink */
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    #e11d48,   /* logo pink */
+    #f59e0b    /* logo yellow */
+  );
+  transition: width 0.3s ease;
 }
 
 nav a:hover {
-  color: #d62828; /* print red */
+  color: #f9a8d4; /* soft pink from logo */
 }
 
-/* ---------- HERO ---------- */
+nav a:hover::after {
+  width: 100%;
+}
+
+
+/* ---------- HERO (HOME PAGE) ---------- */
 .hero {
   min-height: 100vh;
   padding: 160px 80px 80px;
   color: #ffffff;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   background:
-    linear-gradient(
-      120deg,
-      rgba(15, 15, 16, 0.9),
-      rgba(15, 15, 16, 0.6)
-    ),
-    url("images/printerimage1.jpeg");
+  linear-gradient(
+    120deg,
+    rgba(30, 58, 95, 0.65),   /* logo blue */
+    rgba(225, 29, 72, 0.35)   /* logo pink */
+  ),
+  url("print4.jpg");
+
 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .hero-content {
@@ -88,7 +122,7 @@ nav a:hover {
 
 /* ---------- BUTTON ---------- */
 .btn-primary {
-  background: #d62828;  /* bold print red */
+  background: #d62828;
   color: #ffffff;
   padding: 14px 32px;
   border-radius: 30px;
@@ -103,7 +137,7 @@ nav a:hover {
   transform: translateY(-2px);
 }
 
-/* ---------- SERVICE CARDS ---------- */
+/* ---------- SERVICE / GHOST CARDS ---------- */
 .ghost-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -116,10 +150,8 @@ nav a:hover {
   color: #f7f7f5;
   padding: 36px 34px;
   border-radius: 18px;
-
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.15);
-
   transition: background 0.3s ease,
               box-shadow 0.3s ease,
               transform 0.3s ease;
@@ -142,12 +174,121 @@ nav a:hover {
   color: #1a1a1a;
   box-shadow: 0 25px 45px rgba(0,0,0,0.2);
   transform: translateY(-6px);
-  cursor: pointer;
 }
 
 .ghost-card:hover p {
   color: #444;
 }
+
+/* ---------- LOCATION SECTION ---------- */
+.location-section {
+  background: #ffffff;
+  padding: 90px 40px;
+}
+
+.location-container {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.location-info h2 {
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+.location-item {
+  margin-bottom: 22px;
+  color: #444;
+  line-height: 1.6;
+}
+
+.location-item a {
+  color: #d62828;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.location-map iframe {
+  width: 100%;
+  height: 420px;
+  border: 0;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* ================================ */
+/* QUOTE FORM – FIXED LAYOUT (SAFE) */
+/* ================================ */
+
+.quote-form {
+  max-width: 700px;
+  margin: 40px auto 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+/* full width rows */
+.quote-form textarea,
+.quote-form button {
+  grid-column: span 2;
+}
+
+/* inputs */
+.quote-form input,
+.quote-form select,
+.quote-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(30,58,95,0.3);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+}
+
+/* textarea height */
+.quote-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* focus state */
+.quote-form input:focus,
+.quote-form select:focus,
+.quote-form textarea:focus {
+  outline: none;
+  border-color: #e11d48;
+  box-shadow: 0 0 0 3px rgba(225,29,72,0.15);
+}
+
+/* submit button */
+.quote-form button {
+  background: linear-gradient(
+    90deg,
+    #1e3a5f,
+    #e11d48,
+    #f59e0b
+  );
+  color: #fff;
+  border: none;
+  border-radius: 40px;
+  padding: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.quote-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 35px rgba(225,29,72,0.35);
+}
+
 
 /* ---------- FOOTER ---------- */
 footer {
@@ -180,107 +321,7 @@ footer {
     grid-template-columns: 1fr;
     gap: 24px;
   }
-}
 
-/* ---------- QUOTE PAGE ---------- */
-.quote-section {
-  padding: 140px 30px 80px;
-  max-width: 900px;
-  margin: auto;
-}
-
-.quote-intro {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #555;
-}
-
-.quote-contact {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.quote-contact a {
-  color: #d62828;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.quote-form {
-  max-width: 500px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.quote-form input,
-.quote-form select,
-.quote-form textarea {
-  padding: 14px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  font-family: 'Poppins', sans-serif;
-}
-
-.quote-form textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-.quote-form button {
-  background: #d62828;
-  color: white;
-  padding: 14px;
-  border-radius: 30px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* ---------- LOCATION SECTION ---------- */
-.location-section {
-  background: #ffffff;
-  padding: 90px 40px;
-}
-
-.location-container {
-  max-width: 1100px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 40px;
-  align-items: center;
-}
-
-.location-info h2 {
-  font-size: 36px;
-  margin-bottom: 30px;
-  color: #1a1a1a;
-}
-
-.location-item {
-  margin-bottom: 22px;
-  color: #444;
-  line-height: 1.6;
-}
-
-.location-item a {
-  color: #d62828;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.location-map iframe {
-  width: 100%;
-  height: 420px;
-  border: 0;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
   .location-container {
     grid-template-columns: 1fr;
   }
@@ -289,3 +330,173 @@ footer {
     height: 320px;
   }
 }
+
+/* ===================================================== */
+/* ONLY ADDITION – LOGO IMAGE + TEXT (SAFE) */
+/* ===================================================== */
+/* ---------- LOGO IMAGE + TEXT IMAGE (SAFE ADDITION) ---------- */
+.logo-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.logo-icon {
+  height: 42px;
+  width: auto;
+}
+
+.logo-text {
+  height: 42px;
+  width: auto;
+  transform: scaleX(1.25);   /* ← stretches horizontally */
+  transform-origin: left;   /* ← stretches to the RIGHT only */
+  margin-left: 0;           /* no gap between icon & text */
+}
+
+
+/* ================================ */
+/* QUOTE PAGE WRAPPER (ADD THIS)   */
+/* ================================ */
+
+/* ================================ */
+/* QUOTE PAGE – FIT ONE SCREEN     */
+/* ================================ */
+
+.quote-page .quote-section {
+  min-height: 100vh;
+  padding: 120px 30px 80px; /* reduced spacing */
+  background: linear-gradient(
+    135deg,
+    #1e3a5f,
+    #2b1c4f
+  );
+  display: flex;
+  align-items: center;
+}
+
+
+/* center card */
+.quote-wrapper {
+  max-width: 900px;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 60px 50px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+}
+
+/* title */
+.quote-page .section-title {
+  text-align: center;      /* keep */
+  font-size: 36px;         /* reduced */
+  margin-bottom: 12px;     /* tighter */
+  color: #1e3a5f;          /* keep */
+}
+
+.quote-page .quote-intro {
+  text-align: center;      /* keep */
+  font-size: 15px;         /* keep */
+  color: #444;             /* keep */
+  margin-bottom: 20px;     /* tighter */
+}
+
+.quote-page .quote-contact {
+  text-align: center;      /* keep */
+  font-size: 14px;         /* keep */
+  margin-bottom: 22px;     /* tighter */
+}
+/* ============================= */
+/* QUOTE POPUP MODAL (HOME PAGE) */
+/* ============================= */
+
+.quote-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.quote-modal-box {
+  background: #ffffff;
+  width: 100%;
+  max-width: 480px;
+  padding: 40px 36px;
+  border-radius: 24px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+  text-align: center;
+  position: relative;
+}
+
+/* close button */
+.quote-close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  border: none;
+  background: none;
+  font-size: 26px;
+  cursor: pointer;
+  color: #999;
+}
+
+.quote-close:hover {
+  color: #e11d48;
+}
+
+.quote-modal-box h2 {
+  font-size: 32px;
+  color: #1e3a5f;
+  margin-bottom: 10px;
+}
+
+.quote-modal-text {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 26px;
+}
+
+/* form */
+.quote-modal-form {
+  display: grid;
+  gap: 14px;
+}
+
+.quote-modal-form input,
+.quote-modal-form select {
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(30,58,95,0.3);
+  font-family: 'Poppins', sans-serif;
+}
+
+.quote-modal-form input:focus,
+.quote-modal-form select:focus {
+  outline: none;
+  border-color: #e11d48;
+  box-shadow: 0 0 0 3px rgba(225,29,72,0.15);
+}
+
+.quote-modal-form button {
+  margin-top: 10px;
+  padding: 14px;
+  border-radius: 40px;
+  border: none;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(
+    90deg,
+    #1e3a5f,
+    #e11d48,
+    #f59e0b
+  );
+}
+
+.quote-modal-form button:hover {
+  transform: translateY(-2px);
+}
+
