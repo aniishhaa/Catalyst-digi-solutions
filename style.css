@@ -7,14 +7,14 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: #f4f6f6;
-  color: #1f2d2b;
+  background: #f7f7f5;            /* paper white */
+  color: #1a1a1a;                 /* ink black */
   overflow-x: hidden;
 }
 
-/* ---------- HEADER (OVER HERO) ---------- */
+/* ---------- HEADER ---------- */
 header {
-  position: absolute;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
@@ -22,35 +22,47 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: transparent;
+  background: rgba(15, 15, 16, 0.95);  /* solid ink */
   z-index: 10;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
 }
 
 .logo {
   font-weight: 600;
   letter-spacing: 3px;
   font-size: 18px;
-  color: #ffffff;
+  color: #f7f7f5;
 }
 
 nav a {
   margin-left: 34px;
   text-decoration: none;
   font-size: 14px;
-  color: rgba(255,255,255,0.9);
+  color: rgba(247, 247, 245, 0.85);
 }
 
 nav a:hover {
-  color: #ffffff;
+  color: #d62828; /* print red */
 }
 
 /* ---------- HERO ---------- */
 .hero {
   min-height: 100vh;
   padding: 160px 80px 80px;
-  background: linear-gradient(120deg, #2c7f7a, #9bcac3);
-  color: white;
+  color: #ffffff;
   position: relative;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(15, 15, 16, 0.9),
+      rgba(15, 15, 16, 0.6)
+    ),
+    url("images/printerimage1.jpeg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
   display: flex;
   flex-direction: column;
@@ -74,17 +86,24 @@ nav a:hover {
   margin-bottom: 30px;
 }
 
+/* ---------- BUTTON ---------- */
 .btn-primary {
-  background: white;
-  color: #2c7f7a;
+  background: #d62828;  /* bold print red */
+  color: #ffffff;
   padding: 14px 32px;
   border-radius: 30px;
   text-decoration: none;
   font-weight: 600;
   display: inline-block;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-/* ---------- GHOST CARDS (HORIZONTAL) ---------- */
+.btn-primary:hover {
+  background: #a61e1e;
+  transform: translateY(-2px);
+}
+
+/* ---------- SERVICE CARDS ---------- */
 .ghost-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -94,12 +113,12 @@ nav a:hover {
 
 .ghost-card {
   text-decoration: none;
-  color: inherit;
+  color: #f7f7f5;
   padding: 36px 34px;
-  border-radius: 24px;
+  border-radius: 18px;
 
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(6px);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
 
   transition: background 0.3s ease,
               box-shadow 0.3s ease,
@@ -107,8 +126,8 @@ nav a:hover {
 }
 
 .ghost-card h2 {
-  font-size: 32px;
-  letter-spacing: 2px;
+  font-size: 28px;
+  letter-spacing: 1px;
   margin-bottom: 12px;
 }
 
@@ -120,24 +139,23 @@ nav a:hover {
 
 .ghost-card:hover {
   background: #ffffff;
-  color: #1f2d2b;
-  box-shadow: 0 25px 45px rgba(0,0,0,0.12);
+  color: #1a1a1a;
+  box-shadow: 0 25px 45px rgba(0,0,0,0.2);
   transform: translateY(-6px);
   cursor: pointer;
 }
 
 .ghost-card:hover p {
-  color: #6a7f7c;
+  color: #444;
 }
 
 /* ---------- FOOTER ---------- */
 footer {
-  background: #ffffff;
+  background: #0f0f10;
   text-align: center;
   padding: 40px;
   font-size: 13px;
-  color: #6f8784;
-  border-top: 1px solid #eef1f1;
+  color: #9ca3af;
 }
 
 /* ---------- RESPONSIVE ---------- */
@@ -163,54 +181,3 @@ footer {
     gap: 24px;
   }
 }
-/* ---------- NAVBAR COLOR (ALL PAGES – SAME COLOR FAMILY) ---------- */
-
-/* Home */
-.home-page header {
-  background: #2c7f7a;
-}
-
-/* About */
-.about-page header {
-  background: #256e69;
-}
-
-/* Services */
-.services-page header {
-  background: #1f5f5b;
-}
-
-/* Gallery */
-.gallery-page header {
-  background: #3b8f8a;
-}
-
-/* Contact */
-.contact-page header {
-  background: #174d4a;
-}
-
-/* Quote */
-.quote-page header {
-  background: #12403d;
-}
-
-/* Shadow for all pages */
-header {
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-}
-/* ---------- HOME HERO BACKGROUND IMAGE ---------- */
-.home-page .hero {
-  background:
-    linear-gradient(
-      120deg,
-      rgba(44, 127, 122, 0.85),
-      rgba(155, 202, 195, 0.85)
-    ),
-    url("images/printerimage1.jpeg");
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
